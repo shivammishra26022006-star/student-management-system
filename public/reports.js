@@ -1,5 +1,5 @@
 let students = [];
-let attendanceSummary = [];
+let attendanceRecords = [];
 let marksRecords = [];
 let feeRecords = [];
 
@@ -8,95 +8,42 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function startPage() {
-    await loadData();
+    await loadStudents();
+    await loadAttendance();
+    await loadMarks();
+    await loadFees();
     setupReportButton();
 }
 
-async function loadData() {
+async function loadStudents() {
     try {
-        const responses = await Promise.all([
-            fetch("/api/students"),
-            fetch("/api/attendance/summary"),
-            fetch("/api/marks"),
-            fetch("/api/fees")
-        ]);
+        const response = await fetch("/api/students");
 
-        const studentsResponse = responses[0];
-        const attendanceResponse = responses[1];
-        const marksResponse = responses[2];
-        const feesResponse = responses[3];
+        const data = await response.json();
 
-        const studentsData =
-            await studentsResponse.json();
-
-        const attendanceData =
-            await attendanceResponse.json();
-
-        const marksData =
-            await marksResponse.json();
-
-        const feesData =
-            await feesResponse.json();
-
-        if (!studentsResponse.ok) {
+        if (!response.ok) {
             throw new Error(
-                studentsData.error ||
-                "Unable to load students"
+                data.error || "Unable to load students"
             );
         }
 
-        if (!attendanceResponse.ok) {
-            throw new Error(
-                attendanceData.error ||
-                "Unable to load attendance"
-            );
-        }
-
-        if (!marksResponse.ok) {
-            throw new Error(
-                marksData.error ||
-                "Unable to load marks"
-            );
-        }
-
-        if (!feesResponse.ok) {
-            throw new Error(
-                feesData.error ||
-                "Unable to load fees"
-            );
-        }
-
-        students = Array.isArray(studentsData)
-            ? studentsData
-            : [];
-
-        attendanceSummary =
-            Array.isArray(attendanceData)
-                ? attendanceData
-                : [];
-
-        marksRecords =
-            Array.isArray(marksData)
-                ? marksData
-                : [];
-
-        feeRecords =
-            Array.isArray(feesData)
-                ? feesData
-                : [];
+        students = Array.isArray(data) ? data : [];
 
         loadStudentDropdown();
 
     } catch (error) {
-        console.error(
-            "Report Data Error:",
-            error
-        );
+        console.error("Students Error:", error);
 
-        alert(
-            "Report data load nahi hua: " +
-            error.message
-        );
+        const dropdown =
+            document.getElementById("student");
+
+        if (dropdown) {
+            dropdown.innerHTML = `
+                <option value="">
+                    Unable to load students
+                </option>
+            `;
+        }
     }
 }
 
@@ -105,9 +52,7 @@ function loadStudentDropdown() {
         document.getElementById("student");
 
     if (!dropdown) {
-        console.error(
-            "Student dropdown not found."
-        );
+        console.error("Student dropdown not found.");
         return;
     }
 
@@ -132,6 +77,90 @@ function loadStudentDropdown() {
     });
 }
 
+async function loadAttendance() {
+    try {
+        const response =
+            await fetch("/api/attendance");
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                data.error ||
+                "Unable to load attendance"
+            );
+        }
+
+        attendanceRecords =
+            Array.isArray(data) ? data : [];
+
+    } catch (error) {
+        console.error(
+            "Attendance Error:",
+            error
+        );
+
+        attendanceRecords = [];
+    }
+}
+
+async function loadMarks() {
+    try {
+        const response =
+            await fetch("/api/marks");
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                data.error ||
+                "Unable to load marks"
+            );
+        }
+
+        marksRecords =
+            Array.isArray(data) ? data : [];
+
+    } catch (error) {
+        console.error(
+            "Marks Error:",
+            error
+        );
+
+        marksRecords = [];
+    }
+}
+
+async function loadFees() {
+    try {
+        const response =
+            await fetch("/api/fees");
+
+        const data =
+            await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                data.error ||
+                "Unable to load fees"
+            );
+        }
+
+        feeRecords =
+            Array.isArray(data) ? data : [];
+
+    } catch (error) {
+        console.error(
+            "Fees Error:",
+            error
+        );
+
+        feeRecords = [];
+    }
+}
+
 function setupReportButton() {
     const button =
         document.getElementById(
@@ -142,14 +171,13 @@ function setupReportButton() {
         console.error(
             "Generate Report button not found."
         );
+
         return;
     }
 
     button.addEventListener(
         "click",
-        function () {
-            generateReport();
-        }
+        generateReport
     );
 }
 
@@ -168,6 +196,7 @@ function generateReport() {
         alert(
             "Please select a student."
         );
+
         return;
     }
 
@@ -244,66 +273,59 @@ function displayAttendance(student) {
         return;
     }
 
-    const summary =
-        attendanceSummary.find(
+    const records =
+        attendanceRecords.filter(
             function (record) {
-                return String(
-                    record.id
-                ) === String(student.id);
+                return (
+                    String(record.student_id) ===
+                    String(student.id)
+                ) || (
+                    String(
+                        record.roll_number || ""
+                    ).trim() ===
+                    String(
+                        student.roll_number || ""
+                    ).trim()
+                );
             }
         );
 
-    let totalDays = 0;
-    let presentDays = 0;
-    let absentDays = 0;
-    let percentage = "0.0";
+    let present = 0;
+    let absent = 0;
 
-    if (summary) {
-        totalDays =
-            Number(
-                summary.total_days
-            ) || 0;
-
-        presentDays =
-            Number(
-                summary.present_days
-            ) || 0;
-
-        absentDays =
-            Number(
-                summary.absent_days
-            ) || 0;
-
-        if (
-            summary.attendance_percentage !==
-            undefined &&
-            summary.attendance_percentage !==
-            null
-        ) {
-            percentage =
-                String(
-                    summary.attendance_percentage
-                );
-        } else if (totalDays > 0) {
-            percentage =
-                (
-                    (presentDays /
-                        totalDays) *
-                    100
-                ).toFixed(1);
+    records.forEach(function (record) {
+        if (record.status === "Present") {
+            present++;
         }
-    }
+
+        if (record.status === "Absent") {
+            absent++;
+        }
+    });
+
+    const totalDays =
+        present + absent;
+
+    const percentage =
+        totalDays > 0
+            ? (
+                (present / totalDays) *
+                100
+            ).toFixed(1)
+            : "0.0";
 
     table.innerHTML = `
         <tr>
-            <td>${totalDays}</td>
+            <td>
+                ${totalDays}
+            </td>
 
             <td class="present">
-                ${presentDays}
+                ${present}
             </td>
 
             <td class="absent">
-                ${absentDays}
+                ${absent}
             </td>
 
             <td>
@@ -328,9 +350,17 @@ function displayMarks(student) {
     const records =
         marksRecords.filter(
             function (record) {
-                return String(
-                    record.student_id
-                ) === String(student.id);
+                return (
+                    String(record.student_id) ===
+                    String(student.id)
+                ) || (
+                    String(
+                        record.roll_number || ""
+                    ).trim() ===
+                    String(
+                        student.roll_number || ""
+                    ).trim()
+                );
             }
         );
 
@@ -405,9 +435,17 @@ function displayFees(student) {
     const records =
         feeRecords.filter(
             function (record) {
-                return String(
-                    record.student_id
-                ) === String(student.id);
+                return (
+                    String(record.student_id) ===
+                    String(student.id)
+                ) || (
+                    String(
+                        record.roll_number || ""
+                    ).trim() ===
+                    String(
+                        student.roll_number || ""
+                    ).trim()
+                );
             }
         );
 
