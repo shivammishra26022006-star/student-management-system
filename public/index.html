@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Student Management System</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>SMS</h2>
+            <p>Student Management</p>
+        </div>
+
+        <nav>
+
+            <a href="index.html" class="menu active">
+                🏠 Dashboard
+            </a>
+
+            <a href="students.html" class="menu">
+                👨‍🎓 Students
+            </a>
+
+            <a href="attendance.html" class="menu">
+                📅 Attendance
+            </a>
+
+            <a href="exams.html" class="menu">
+                📝 Exams & Marks
+            </a>
+
+            <a href="result.html" class="menu">
+                📄 Result
+            </a>
+
+            <a href="fees.html" class="menu">
+                💰 Fees
+            </a>
+
+            <a href="reports.html" class="menu">
+                📊 Reports
+            </a>
+
+            <a href="settings.html" class="menu">
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="top-header">
+
+            <div>
+                <h1>Dashboard</h1>
+                <p>Welcome to Student Management System</p>
+            </div>
+
+            <div class="profile">
+
+                <div class="profile-icon">
+                    A
+                </div>
+
+                <div>
+                    <strong id="adminNameDisplay">Admin</strong>
+                    <small>Administrator</small>
+                </div>
+
+            </div>
+
+        </header>
+
+        <section class="dashboard-cards">
+
+            <div class="card">
+
+                <div class="card-icon">
+                    👨‍🎓
+                </div>
+
+                <div>
+                    <h3 id="totalStudents">0</h3>
+                    <p>Total Students</p>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-icon">
+                    👨‍🏫
+                </div>
+
+                <div>
+                    <h3>25</h3>
+                    <p>Total Teachers</p>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📅
+                </div>
+
+                <div>
+                    <h3 id="attendancePercentage">0%</h3>
+                    <p>Attendance</p>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-icon">
+                    💰
+                </div>
+
+                <div>
+                    <h3 id="pendingFees">₹0</h3>
+                    <p>Pending Fees</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="content-box">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Recently Added Students</h2>
+                    <p>Latest student records</p>
+                </div>
+
+                <a
+                    href="students.html"
+                    class="primary-button"
+                >
+                    + Add Student
+                </a>
+
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student Name</th>
+                            <th>Roll Number</th>
+                            <th>Course</th>
+                            <th>Phone</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="recentStudentsTable">
+                        <tr>
+                            <td colspan="6">
+                                Loading students...
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <section class="content-box">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Quick Actions</h2>
+                    <p>Frequently used options</p>
+                </div>
+
+            </div>
+
+            <div class="quick-actions">
+
+                <a
+                    href="students.html"
+                    class="quick-button"
+                >
+                    👨‍🎓 Add Student
+                </a>
+
+                <a
+                    href="attendance.html"
+                    class="quick-button"
+                >
+                    📅 Mark Attendance
+                </a>
+
+                <a
+                    href="exams.html"
+                    class="quick-button"
+                >
+                    📝 Add Marks
+                </a>
+
+                <a
+                    href="fees.html"
+                    class="quick-button"
+                >
+                    💰 Add Fee
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+
+        async function loadDashboardStudents() {
+
+            try {
+
+                const response =
+                    await fetch("/api/students");
+
+                const students =
+                    await response.json();
+
+                if (!response.ok) {
+                    throw new Error(
+                        students.error ||
+                        "Unable to load students"
+                    );
+                }
+
+                document.getElementById(
+                    "totalStudents"
+                ).textContent =
+                    students.length;
+
+                const table =
+                    document.getElementById(
+                        "recentStudentsTable"
+                    );
+
+                table.innerHTML = "";
+
+                if (students.length === 0) {
+
+                    table.innerHTML = `
+                        <tr>
+                            <td colspan="6">
+                                No students found.
+                            </td>
+                        </tr>
+                    `;
+
+                    return;
+                }
+
+                students
+                    .slice(0, 5)
+                    .forEach(student => {
+
+                        const row =
+                            document.createElement("tr");
+
+                        row.innerHTML = `
+                            <td>
+                                ST${String(student.id)
+                                    .padStart(3, "0")}
+                            </td>
+
+                            <td>
+                                <a
+                                    href="student-profile.html?id=${student.id}"
+                                    class="student-link"
+                                >
+                                    ${escapeHTML(student.name)}
+                                </a>
+                            </td>
+
+                            <td>
+                                ${escapeHTML(
+                                    student.roll_number
+                                )}
+                            </td>
+
+                            <td>
+                                ${escapeHTML(
+                                    student.course
+                                )}
+                            </td>
+
+                            <td>
+                                ${escapeHTML(
+                                    student.phone || "-"
+                                )}
+                            </td>
+
+                            <td>
+                                <span class="status active">
+                                    Active
+                                </span>
+                            </td>
+                        `;
+
+                        table.appendChild(row);
+
+                    });
+
+            } catch (error) {
+
+                console.error(
+                    "Student dashboard error:",
+                    error
+                );
+
+                document.getElementById(
+                    "totalStudents"
+                ).textContent = "0";
+
+                document.getElementById(
+                    "recentStudentsTable"
+                ).innerHTML = `
+                    <tr>
+                        <td colspan="6">
+                            Unable to load students.
+                        </td>
+                    </tr>
+                `;
+
+            }
+
+        }
+
+        async function loadDashboardAttendance() {
+
+            try {
+
+                const response =
+                    await fetch("/api/attendance");
+
+                const records =
+                    await response.json();
+
+                if (!response.ok) {
+                    throw new Error(
+                        records.error ||
+                        "Unable to load attendance"
+                    );
+                }
+
+                if (records.length === 0) {
+
+                    document.getElementById(
+                        "attendancePercentage"
+                    ).textContent = "0%";
+
+                    return;
+                }
+
+                let present = 0;
+
+                records.forEach(record => {
+
+                    if (
+                        record.status === "Present"
+                    ) {
+                        present++;
+                    }
+
+                });
+
+                const percentage =
+                    (
+                        present /
+                        records.length
+                    ) * 100;
+
+                document.getElementById(
+                    "attendancePercentage"
+                ).textContent =
+                    percentage.toFixed(1) + "%";
+
+            } catch (error) {
+
+                console.error(
+                    "Attendance dashboard error:",
+                    error
+                );
+
+            }
+
+        }
+
+        async function loadDashboardFees() {
+
+            try {
+
+                const response =
+                    await fetch("/api/fees/summary");
+
+                const records =
+                    await response.json();
+
+                if (!response.ok) {
+                    throw new Error(
+                        records.error ||
+                        "Unable to load fees"
+                    );
+                }
+
+                let totalPending = 0;
+
+                records.forEach(record => {
+
+                    totalPending +=
+                        Number(record.pending_fee) || 0;
+
+                });
+
+                document.getElementById(
+                    "pendingFees"
+                ).textContent =
+                    "₹" +
+                    totalPending.toLocaleString("en-IN");
+
+            } catch (error) {
+
+                console.error(
+                    "Fees dashboard error:",
+                    error
+                );
+
+            }
+
+        }
+
+        function loadAdminName() {
+
+            const savedAdminName =
+                localStorage.getItem("adminName");
+
+            if (savedAdminName) {
+
+                document.getElementById(
+                    "adminNameDisplay"
+                ).textContent =
+                    savedAdminName;
+
+            }
+
+        }
+
+        function escapeHTML(value) {
+
+            return String(value)
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+
+        }
+
+        loadDashboardStudents();
+        loadDashboardAttendance();
+        loadDashboardFees();
+        loadAdminName();
+
+    </script>
+
+    <script src="auth.js"></script>
+    <script src="logout.js"></script>
+
+</body>
+
+</html>

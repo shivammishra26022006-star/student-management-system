@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <aside class="sidebar">
+            <h2>Student MS</h2>
+
+            <a href="index.html">Dashboard</a>
+            <a href="students.html">Students</a>
+            <a href="attendance.html">Attendance</a>
+            <a href="exams.html">Exams & Marks</a>
+            <a href="result.html">Result</a>
+            <a href="fees.html">Fees</a>
+            <a href="reports.html" class="active">Reports</a>
+        </aside>
+
+        <main class="main-content">
+
+            <h1>Reports</h1>
+
+            <div class="form-card">
+
+                <h2>Student Report</h2>
+
+                <div class="form-group">
+                    <label for="student">Select Student</label>
+
+                    <select id="student">
+                        <option value="">Select Student</option>
+                    </select>
+                </div>
+
+                <button type="button" id="generateReport">
+                    Generate Report
+                </button>
+
+            </div>
+
+            <div class="table-card">
+
+                <h2>Student Information</h2>
+
+                <div id="studentInfo">
+                    Select a student and generate the report.
+                </div>
+
+            </div>
+
+            <div class="table-card">
+
+                <h2>Attendance Report</h2>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Total Days</th>
+                                <th>Present</th>
+                                <th>Absent</th>
+                                <th>Attendance %</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="attendanceReport">
+                            <tr>
+                                <td colspan="4">
+                                    No report generated.
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <div class="table-card">
+
+                <h2>Marks Report</h2>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Exam</th>
+                                <th>Subject</th>
+                                <th>Marks</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="marksReport">
+                            <tr>
+                                <td colspan="4">
+                                    No report generated.
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <div class="table-card">
+
+                <h2>Fees Report</h2>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Fee Type</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Payment Method</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="feesReport">
+                            <tr>
+                                <td colspan="4">
+                                    No report generated.
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="reports.js"></script>
+    <script src="auth.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <aside class="sidebar">
+            <h2>Student MS</h2>
+
+            <a href="index.html">Dashboard</a>
+            <a href="students.html">Students</a>
+            <a href="attendance.html">Attendance</a>
+            <a href="exams.html">Exams & Marks</a>
+            <a href="result.html" class="active">Result</a>
+            <a href="fees.html">Fees</a>
+            <a href="reports.html">Reports</a>
+        </aside>
+
+        <main class="main-content">
+
+            <h1>Student Result</h1>
+
+            <div class="form-card">
+
+                <h2>Select Student</h2>
+
+                <div class="form-group">
+                    <label for="student">Student</label>
+
+                    <select id="student">
+                        <option value="">Select Student</option>
+                    </select>
+                </div>
+
+                <button type="button" id="viewResult">
+                    View Result
+                </button>
+
+            </div>
+
+            <div class="table-card">
+
+                <h2>Result</h2>
+
+                <div id="studentInfo"></div>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Exam</th>
+                                <th>Subject</th>
+                                <th>Marks</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="resultTable">
+                            <tr>
+                                <td colspan="4">
+                                    Select a student to view result.
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div id="resultSummary"></div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="result.js"></script>
+    <script src="auth.js"></script>
+
+</body>
+</html>

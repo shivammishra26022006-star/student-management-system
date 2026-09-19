@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Students - Student Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>SMS</h2>
+
+            <p>Student Management</p>
+
+        </div>
+
+        <nav>
+
+            <a href="index.html" class="menu">
+                🏠 Dashboard
+            </a>
+
+            <a href="students.html" class="menu active">
+                👨‍🎓 Students
+            </a>
+
+            <a href="attendance.html" class="menu">
+                📅 Attendance
+            </a>
+
+            <a href="exams.html" class="menu">
+                📝 Exams & Marks
+            </a>
+
+            <a href="fees.html" class="menu">
+                💰 Fees
+            </a>
+
+            <a href="reports.html" class="menu">
+                📊 Reports
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="top-header">
+
+            <div>
+
+                <h1>Students</h1>
+
+                <p>
+                    Manage all student records
+                </p>
+
+            </div>
+
+        </header>
+
+        <section class="content-box">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Add New Student</h2>
+
+                    <p>
+                        Enter student information below
+                    </p>
+
+                </div>
+
+            </div>
+
+            <form id="studentForm">
+
+                <div class="form-grid">
+
+                    <div>
+
+                        <label>Student Name *</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter student name"
+                            required
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <label>Roll Number *</label>
+
+                        <input
+                            type="text"
+                            id="roll_number"
+                            placeholder="Enter roll number"
+                            required
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter email"
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <label>Phone</label>
+
+                        <input
+                            type="text"
+                            id="phone"
+                            placeholder="Enter phone number"
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <label>Course *</label>
+
+                        <select id="course" required>
+
+                            <option value="">
+                                Select Course
+                            </option>
+
+                            <option value="BCA">
+                                BCA
+                            </option>
+
+                            <option value="BBA">
+                                BBA
+                            </option>
+
+                            <option value="BSc">
+                                BSc
+                            </option>
+
+                            <option value="BA">
+                                BA
+                            </option>
+
+                            <option value="BCom">
+                                BCom
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div>
+
+                        <label>Gender</label>
+
+                        <select id="gender">
+
+                            <option value="">
+                                Select Gender
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div>
+
+                        <label>Date of Birth</label>
+
+                        <input
+                            type="date"
+                            id="date_of_birth"
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <label>Address</label>
+
+                        <input
+                            type="text"
+                            id="address"
+                            placeholder="Enter address"
+                        >
+
+                    </div>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="primary-button">
+
+                    Save Student
+
+                </button>
+
+            </form>
+
+        </section>
+
+        <section class="content-box">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>Student List</h2>
+
+                    <p>
+                        All registered students
+                    </p>
+
+                </div>
+
+            </div>
+
+            <input
+                type="text"
+                id="search"
+                class="search-box"
+                placeholder="Search by name, roll number or course..."
+            >
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Name</th>
+
+                            <th>Roll Number</th>
+
+                            <th>Course</th>
+
+                            <th>Email</th>
+
+                            <th>Phone</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="studentTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="students.js"></script>
+    <script src="auth.js"></script>
+
+</body>
+
+</html>
