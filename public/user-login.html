@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Login - Student Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <h1>Student Management System</h1>
+
+            <h2>User Login</h2>
+
+            <!-- USER LOGIN -->
+
+            <form id="userLoginForm">
+
+                <div class="form-group">
+                    <label for="loginUsername">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="loginUsername"
+                        placeholder="Enter username"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter password"
+                        required
+                    >
+                </div>
+
+                <button type="submit">
+                    Login
+                </button>
+
+            </form>
+
+            <p id="userLoginMessage"></p>
+
+            <hr>
+
+            <!-- USER REGISTRATION -->
+
+            <h2>Create User Account</h2>
+
+            <form id="userRegisterForm">
+
+                <div class="form-group">
+                    <label for="registerName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="registerName"
+                        placeholder="Enter full name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="registerEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        placeholder="Enter email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="registerPhone">
+                        Phone
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="registerPhone"
+                        placeholder="Enter phone number"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="registerUsername">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="registerUsername"
+                        placeholder="Create username"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="registerPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        placeholder="Create password"
+                        required
+                    >
+                </div>
+
+                <button type="submit">
+                    Create Account
+                </button>
+
+            </form>
+
+            <p id="userRegisterMessage"></p>
+
+        </div>
+
+    </div>
+
+    <script src="user-login.js"></script>
+
+</body>
+</html>
