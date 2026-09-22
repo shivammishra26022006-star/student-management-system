@@ -1,12 +1,14 @@
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
+const crypto = require("crypto");
 
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
 const publicPath = path.join(__dirname, "public");
+
 const databasePath = path.join(
     __dirname,
     "student_management.db"
@@ -15,6 +17,7 @@ const databasePath = path.join(
 const db = new sqlite3.Database(
     databasePath,
     (err) => {
+
         if (err) {
             console.error(
                 "Database connection failed:",
@@ -34,11 +37,13 @@ app.use(
     express.static(publicPath)
 );
 
+
 /* =========================================================
    HOME
 ========================================================= */
 
 app.get("/", (req, res) => {
+
     res.sendFile(
         path.join(
             publicPath,
@@ -46,6 +51,7 @@ app.get("/", (req, res) => {
         )
     );
 });
+
 
 /* =========================================================
    DATABASE TABLES
@@ -56,6 +62,11 @@ db.serialize(() => {
     db.run(`
         PRAGMA foreign_keys = ON
     `);
+
+
+    /* =========================
+       STUDENTS
+    ========================= */
 
     db.run(`
         CREATE TABLE IF NOT EXISTS students (
@@ -72,6 +83,11 @@ db.serialize(() => {
         )
     `);
 
+
+    /* =========================
+       ATTENDANCE
+    ========================= */
+
     db.run(`
         CREATE TABLE IF NOT EXISTS attendance (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -84,6 +100,11 @@ db.serialize(() => {
             ON DELETE CASCADE
         )
     `);
+
+
+    /* =========================
+       MARKS
+    ========================= */
 
     db.run(`
         CREATE TABLE IF NOT EXISTS marks (
@@ -99,6 +120,11 @@ db.serialize(() => {
         )
     `);
 
+
+    /* =========================
+       FEES
+    ========================= */
+
     db.run(`
         CREATE TABLE IF NOT EXISTS fees (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -113,6 +139,11 @@ db.serialize(() => {
         )
     `);
 
+
+    /* =========================
+       FEE STRUCTURE
+    ========================= */
+
     db.run(`
         CREATE TABLE IF NOT EXISTS fee_structure (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -124,7 +155,27 @@ db.serialize(() => {
         )
     `);
 
+
+    /* =========================
+       USERS
+    ========================= */
+
+    db.run(`
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            email TEXT NOT NULL,
+            phone TEXT NOT NULL,
+            username TEXT NOT NULL UNIQUE,
+            password_hash TEXT NOT NULL,
+            salt TEXT NOT NULL,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            last_login DATETIME
+        )
+    `);
+
 });
+
 
 /* =========================================================
    STUDENTS
@@ -241,9 +292,7 @@ app.post("/api/students", (req, res) => {
             if (err) {
 
                 if (
-                    err.message.includes(
-                        "UNIQUE"
-                    )
+                    err.message.includes("UNIQUE")
                 ) {
                     return res.status(400).json({
                         error:
@@ -321,9 +370,7 @@ app.put("/api/students/:id", (req, res) => {
             if (err) {
 
                 if (
-                    err.message.includes(
-                        "UNIQUE"
-                    )
+                    err.message.includes("UNIQUE")
                 ) {
                     return res.status(400).json({
                         error:
@@ -385,6 +432,7 @@ app.delete("/api/students/:id", (req, res) => {
         }
     );
 });
+
 
 /* =========================================================
    ATTENDANCE
@@ -628,6 +676,7 @@ app.get(
     }
 );
 
+
 /* =========================================================
    MARKS
 ========================================================= */
@@ -738,6 +787,7 @@ app.get("/api/marks", (req, res) => {
         }
     );
 });
+
 
 /* =========================================================
    FEES
@@ -885,6 +935,7 @@ app.delete("/api/fees/:id", (req, res) => {
         }
     );
 });
+
 
 /* =========================================================
    FEE STRUCTURE
@@ -1072,6 +1123,273 @@ app.get("/api/fees/summary", (req, res) => {
     );
 });
 
+
+/* =========================================================
+   USERS
+========================================================= */
+
+function hashPassword(password, salt) {
+
+    return crypto
+        .scryptSync(
+            password,
+            salt,
+            64
+        )
+        .toString("hex");
+}
+
+
+/* =========================
+   USER REGISTER
+========================= */
+
+app.post(
+    "/api/users/register",
+    (req, res) => {
+
+        const {
+            name,
+            email,
+            phone,
+            username,
+            password
+        } = req.body;
+
+        if (
+            !name ||
+            !email ||
+            !phone ||
+            !username ||
+            !password
+        ) {
+            return res.status(400).json({
+                error:
+                    "All fields are required"
+            });
+        }
+
+        if (password.length < 6) {
+            return res.status(400).json({
+                error:
+                    "Password must be at least 6 characters"
+            });
+        }
+
+        const cleanUsername =
+            username
+                .trim()
+                .toLowerCase();
+
+        const salt =
+            crypto
+                .randomBytes(16)
+                .toString("hex");
+
+        const passwordHash =
+            hashPassword(
+                password,
+                salt
+            );
+
+        const sql = `
+            INSERT INTO users
+            (
+                name,
+                email,
+                phone,
+                username,
+                password_hash,
+                salt
+            )
+            VALUES (?, ?, ?, ?, ?, ?)
+        `;
+
+        db.run(
+            sql,
+            [
+                name.trim(),
+                email.trim(),
+                phone.trim(),
+                cleanUsername,
+                passwordHash,
+                salt
+            ],
+            function (err) {
+
+                if (err) {
+
+                    if (
+                        err.message.includes(
+                            "UNIQUE"
+                        )
+                    ) {
+                        return res.status(400).json({
+                            error:
+                                "Username already exists"
+                        });
+                    }
+
+                    return res.status(500).json({
+                        error: err.message
+                    });
+                }
+
+                res.json({
+                    message:
+                        "Account created successfully",
+                    userId:
+                        this.lastID
+                });
+            }
+        );
+    }
+);
+
+
+/* =========================
+   USER LOGIN
+========================= */
+
+app.post(
+    "/api/users/login",
+    (req, res) => {
+
+        const {
+            username,
+            password
+        } = req.body;
+
+        if (
+            !username ||
+            !password
+        ) {
+            return res.status(400).json({
+                error:
+                    "Username and password are required"
+            });
+        }
+
+        const cleanUsername =
+            username
+                .trim()
+                .toLowerCase();
+
+        db.get(
+            `
+            SELECT *
+            FROM users
+            WHERE username = ?
+            `,
+            [cleanUsername],
+            (err, user) => {
+
+                if (err) {
+                    return res.status(500).json({
+                        error:
+                            err.message
+                    });
+                }
+
+                if (!user) {
+                    return res.status(401).json({
+                        error:
+                            "Invalid username or password"
+                    });
+                }
+
+                const passwordHash =
+                    hashPassword(
+                        password,
+                        user.salt
+                    );
+
+                if (
+                    passwordHash !==
+                    user.password_hash
+                ) {
+                    return res.status(401).json({
+                        error:
+                            "Invalid username or password"
+                    });
+                }
+
+                db.run(
+                    `
+                    UPDATE users
+                    SET last_login =
+                        CURRENT_TIMESTAMP
+                    WHERE id = ?
+                    `,
+                    [user.id],
+                    (updateErr) => {
+
+                        if (updateErr) {
+                            console.error(
+                                "Last login update failed:",
+                                updateErr.message
+                            );
+                        }
+                    }
+                );
+
+                res.json({
+                    message:
+                        "Login successful",
+
+                    user: {
+                        id: user.id,
+                        name: user.name,
+                        email: user.email,
+                        phone: user.phone,
+                        username:
+                            user.username
+                    }
+                });
+            }
+        );
+    }
+);
+
+
+/* =========================
+   GET USERS FOR ADMIN
+========================= */
+
+app.get(
+    "/api/users",
+    (req, res) => {
+
+        db.all(
+            `
+            SELECT
+                id,
+                name,
+                email,
+                phone,
+                username,
+                created_at,
+                last_login
+            FROM users
+            ORDER BY id DESC
+            `,
+            [],
+            (err, rows) => {
+
+                if (err) {
+                    return res.status(500).json({
+                        error:
+                            err.message
+                    });
+                }
+
+                res.json(rows);
+            }
+        );
+    }
+);
+
+
 /* =========================================================
    START SERVER
 ========================================================= */
@@ -1080,6 +1398,7 @@ app.listen(
     PORT,
     "0.0.0.0",
     () => {
+
         console.log(
             `Server running on port ${PORT}`
         );
