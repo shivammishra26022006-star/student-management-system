@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -15,6 +16,7 @@
         rel="stylesheet"
         href="style.css"
     >
+
 </head>
 
 <body>
@@ -22,41 +24,75 @@
     <aside class="sidebar">
 
         <div class="logo">
+
             <h2>SMS</h2>
+
             <p>Student Management</p>
+
         </div>
 
         <nav>
 
-            <a href="index.html" class="menu active">
+            <a
+                href="index.html"
+                class="menu active"
+            >
                 🏠 Dashboard
             </a>
 
-            <a href="students.html" class="menu">
+            <a
+                href="students.html"
+                class="menu"
+            >
                 👨‍🎓 Students
             </a>
 
-            <a href="attendance.html" class="menu">
+            <a
+                href="attendance.html"
+                class="menu"
+            >
                 📅 Attendance
             </a>
 
-            <a href="exams.html" class="menu">
+            <a
+                href="exams.html"
+                class="menu"
+            >
                 📝 Exams & Marks
             </a>
 
-            <a href="result.html" class="menu">
+            <a
+                href="result.html"
+                class="menu"
+            >
                 📄 Result
             </a>
 
-            <a href="fees.html" class="menu">
+            <a
+                href="fees.html"
+                class="menu"
+            >
                 💰 Fees
             </a>
 
-            <a href="reports.html" class="menu">
+            <a
+                href="reports.html"
+                class="menu"
+            >
                 📊 Reports
             </a>
 
-            <a href="settings.html" class="menu">
+            <a
+                href="users.html"
+                class="menu"
+            >
+                👥 Users
+            </a>
+
+            <a
+                href="settings.html"
+                class="menu"
+            >
                 ⚙️ Settings
             </a>
 
@@ -64,14 +100,21 @@
 
     </aside>
 
+
     <main class="main-content">
 
         <header class="top-header">
 
             <div>
+
                 <h1>Dashboard</h1>
-                <p>Welcome to Student Management System</p>
+
+                <p>
+                    Welcome to Student Management System
+                </p>
+
             </div>
+
 
             <div class="profile">
 
@@ -80,15 +123,24 @@
                 </div>
 
                 <div>
-                    <strong id="adminNameDisplay">Admin</strong>
-                    <small>Administrator</small>
+
+                    <strong id="adminNameDisplay">
+                        Admin
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
                 </div>
 
             </div>
 
         </header>
 
+
         <section class="dashboard-cards">
+
 
             <div class="card">
 
@@ -97,11 +149,19 @@
                 </div>
 
                 <div>
-                    <h3 id="totalStudents">0</h3>
-                    <p>Total Students</p>
+
+                    <h3 id="totalStudents">
+                        0
+                    </h3>
+
+                    <p>
+                        Total Students
+                    </p>
+
                 </div>
 
             </div>
+
 
             <div class="card">
 
@@ -110,11 +170,19 @@
                 </div>
 
                 <div>
-                    <h3>25</h3>
-                    <p>Total Teachers</p>
+
+                    <h3>
+                        25
+                    </h3>
+
+                    <p>
+                        Total Teachers
+                    </p>
+
                 </div>
 
             </div>
+
 
             <div class="card">
 
@@ -123,11 +191,19 @@
                 </div>
 
                 <div>
-                    <h3 id="attendancePercentage">0%</h3>
-                    <p>Attendance</p>
+
+                    <h3 id="attendancePercentage">
+                        0%
+                    </h3>
+
+                    <p>
+                        Attendance
+                    </p>
+
                 </div>
 
             </div>
+
 
             <div class="card">
 
@@ -136,22 +212,38 @@
                 </div>
 
                 <div>
-                    <h3 id="pendingFees">₹0</h3>
-                    <p>Pending Fees</p>
+
+                    <h3 id="pendingFees">
+                        ₹0
+                    </h3>
+
+                    <p>
+                        Pending Fees
+                    </p>
+
                 </div>
 
             </div>
 
         </section>
 
+
         <section class="content-box">
 
             <div class="section-heading">
 
                 <div>
-                    <h2>Recently Added Students</h2>
-                    <p>Latest student records</p>
+
+                    <h2>
+                        Recently Added Students
+                    </h2>
+
+                    <p>
+                        Latest student records
+                    </p>
+
                 </div>
+
 
                 <a
                     href="students.html"
@@ -162,27 +254,54 @@
 
             </div>
 
+
             <div class="table-container">
 
                 <table>
 
                     <thead>
+
                         <tr>
-                            <th>ID</th>
-                            <th>Student Name</th>
-                            <th>Roll Number</th>
-                            <th>Course</th>
-                            <th>Phone</th>
-                            <th>Status</th>
+
+                            <th>
+                                ID
+                            </th>
+
+                            <th>
+                                Student Name
+                            </th>
+
+                            <th>
+                                Roll Number
+                            </th>
+
+                            <th>
+                                Course
+                            </th>
+
+                            <th>
+                                Phone
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
                         </tr>
+
                     </thead>
 
+
                     <tbody id="recentStudentsTable">
+
                         <tr>
+
                             <td colspan="6">
                                 Loading students...
                             </td>
+
                         </tr>
+
                     </tbody>
 
                 </table>
@@ -191,18 +310,28 @@
 
         </section>
 
+
         <section class="content-box">
 
             <div class="section-heading">
 
                 <div>
-                    <h2>Quick Actions</h2>
-                    <p>Frequently used options</p>
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                    <p>
+                        Frequently used options
+                    </p>
+
                 </div>
 
             </div>
 
+
             <div class="quick-actions">
+
 
                 <a
                     href="students.html"
@@ -211,12 +340,14 @@
                     👨‍🎓 Add Student
                 </a>
 
+
                 <a
                     href="attendance.html"
                     class="quick-button"
                 >
                     📅 Mark Attendance
                 </a>
+
 
                 <a
                     href="exams.html"
@@ -225,11 +356,20 @@
                     📝 Add Marks
                 </a>
 
+
                 <a
                     href="fees.html"
                     class="quick-button"
                 >
                     💰 Add Fee
+                </a>
+
+
+                <a
+                    href="users.html"
+                    class="quick-button"
+                >
+                    👥 View Users
                 </a>
 
             </div>
@@ -238,6 +378,7 @@
 
     </main>
 
+
     <script>
 
         async function loadDashboardStudents() {
@@ -245,93 +386,133 @@
             try {
 
                 const response =
-                    await fetch("/api/students");
+                    await fetch(
+                        "/api/students"
+                    );
 
                 const students =
                     await response.json();
 
+
                 if (!response.ok) {
+
                     throw new Error(
                         students.error ||
                         "Unable to load students"
                     );
+
                 }
+
 
                 document.getElementById(
                     "totalStudents"
                 ).textContent =
                     students.length;
 
+
                 const table =
                     document.getElementById(
                         "recentStudentsTable"
                     );
 
+
                 table.innerHTML = "";
 
-                if (students.length === 0) {
+
+                if (
+                    students.length === 0
+                ) {
 
                     table.innerHTML = `
                         <tr>
+
                             <td colspan="6">
                                 No students found.
                             </td>
+
                         </tr>
                     `;
 
                     return;
+
                 }
+
 
                 students
                     .slice(0, 5)
-                    .forEach(student => {
+                    .forEach(
+                        student => {
 
-                        const row =
-                            document.createElement("tr");
+                            const row =
+                                document.createElement(
+                                    "tr"
+                                );
 
-                        row.innerHTML = `
-                            <td>
-                                ST${String(student.id)
-                                    .padStart(3, "0")}
-                            </td>
 
-                            <td>
-                                <a
-                                    href="student-profile.html?id=${student.id}"
-                                    class="student-link"
-                                >
-                                    ${escapeHTML(student.name)}
-                                </a>
-                            </td>
+                            row.innerHTML = `
 
-                            <td>
-                                ${escapeHTML(
-                                    student.roll_number
-                                )}
-                            </td>
+                                <td>
+                                    ST${String(
+                                        student.id
+                                    ).padStart(3, "0")}
+                                </td>
 
-                            <td>
-                                ${escapeHTML(
-                                    student.course
-                                )}
-                            </td>
 
-                            <td>
-                                ${escapeHTML(
-                                    student.phone || "-"
-                                )}
-                            </td>
+                                <td>
 
-                            <td>
-                                <span class="status active">
-                                    Active
-                                </span>
-                            </td>
-                        `;
+                                    <a
+                                        href="student-profile.html?id=${student.id}"
+                                        class="student-link"
+                                    >
+                                        ${escapeHTML(
+                                            student.name
+                                        )}
+                                    </a>
 
-                        table.appendChild(row);
+                                </td>
 
-                    });
+
+                                <td>
+                                    ${escapeHTML(
+                                        student.roll_number
+                                    )}
+                                </td>
+
+
+                                <td>
+                                    ${escapeHTML(
+                                        student.course
+                                    )}
+                                </td>
+
+
+                                <td>
+                                    ${escapeHTML(
+                                        student.phone || "-"
+                                    )}
+                                </td>
+
+
+                                <td>
+
+                                    <span
+                                        class="status active"
+                                    >
+                                        Active
+                                    </span>
+
+                                </td>
+
+                            `;
+
+
+                            table.appendChild(
+                                row
+                            );
+
+                        }
+                    );
+
 
             } catch (error) {
 
@@ -340,61 +521,88 @@
                     error
                 );
 
+
                 document.getElementById(
                     "totalStudents"
-                ).textContent = "0";
+                ).textContent =
+                    "0";
+
 
                 document.getElementById(
                     "recentStudentsTable"
                 ).innerHTML = `
+
                     <tr>
+
                         <td colspan="6">
                             Unable to load students.
                         </td>
+
                     </tr>
+
                 `;
 
             }
 
         }
 
+
         async function loadDashboardAttendance() {
 
             try {
 
                 const response =
-                    await fetch("/api/attendance");
+                    await fetch(
+                        "/api/attendance"
+                    );
+
 
                 const records =
                     await response.json();
 
+
                 if (!response.ok) {
+
                     throw new Error(
                         records.error ||
                         "Unable to load attendance"
                     );
+
                 }
 
-                if (records.length === 0) {
+
+                if (
+                    records.length === 0
+                ) {
 
                     document.getElementById(
                         "attendancePercentage"
-                    ).textContent = "0%";
+                    ).textContent =
+                        "0%";
 
                     return;
+
                 }
+
 
                 let present = 0;
 
-                records.forEach(record => {
 
-                    if (
-                        record.status === "Present"
-                    ) {
-                        present++;
+                records.forEach(
+                    record => {
+
+                        if (
+                            record.status ===
+                            "Present"
+                        ) {
+
+                            present++;
+
+                        }
+
                     }
+                );
 
-                });
 
                 const percentage =
                     (
@@ -402,10 +610,13 @@
                         records.length
                     ) * 100;
 
+
                 document.getElementById(
                     "attendancePercentage"
                 ).textContent =
-                    percentage.toFixed(1) + "%";
+                    percentage.toFixed(1) +
+                    "%";
+
 
             } catch (error) {
 
@@ -418,37 +629,54 @@
 
         }
 
+
         async function loadDashboardFees() {
 
             try {
 
                 const response =
-                    await fetch("/api/fees/summary");
+                    await fetch(
+                        "/api/fees/summary"
+                    );
+
 
                 const records =
                     await response.json();
 
+
                 if (!response.ok) {
+
                     throw new Error(
                         records.error ||
                         "Unable to load fees"
                     );
+
                 }
+
 
                 let totalPending = 0;
 
-                records.forEach(record => {
 
-                    totalPending +=
-                        Number(record.pending_fee) || 0;
+                records.forEach(
+                    record => {
 
-                });
+                        totalPending +=
+                            Number(
+                                record.pending_fee
+                            ) || 0;
+
+                    }
+                );
+
 
                 document.getElementById(
                     "pendingFees"
                 ).textContent =
                     "₹" +
-                    totalPending.toLocaleString("en-IN");
+                    totalPending.toLocaleString(
+                        "en-IN"
+                    );
+
 
             } catch (error) {
 
@@ -461,10 +689,14 @@
 
         }
 
+
         function loadAdminName() {
 
             const savedAdminName =
-                localStorage.getItem("adminName");
+                localStorage.getItem(
+                    "adminName"
+                );
+
 
             if (savedAdminName) {
 
@@ -477,25 +709,47 @@
 
         }
 
+
         function escapeHTML(value) {
 
             return String(value)
-                .replaceAll("&", "&amp;")
-                .replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;")
-                .replaceAll('"', "&quot;")
-                .replaceAll("'", "&#039;");
+                .replaceAll(
+                    "&",
+                    "&amp;"
+                )
+                .replaceAll(
+                    "<",
+                    "&lt;"
+                )
+                .replaceAll(
+                    ">",
+                    "&gt;"
+                )
+                .replaceAll(
+                    '"',
+                    "&quot;"
+                )
+                .replaceAll(
+                    "'",
+                    "&#039;"
+                );
 
         }
 
+
         loadDashboardStudents();
+
         loadDashboardAttendance();
+
         loadDashboardFees();
+
         loadAdminName();
 
     </script>
 
+
     <script src="auth.js"></script>
+
     <script src="logout.js"></script>
 
 </body>
