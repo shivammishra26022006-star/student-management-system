@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Student Dashboard - Student Management System</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>SMS</h2>
+
+            <p>
+                Student Portal
+            </p>
+
+        </div>
+
+
+        <nav>
+
+            <a
+                href="student-dashboard.html"
+                class="menu active"
+            >
+                🏠 Dashboard
+            </a>
+
+
+            <a
+                href="#profile"
+                class="menu"
+            >
+                👤 My Profile
+            </a>
+
+
+            <a
+                href="#attendance"
+                class="menu"
+            >
+                📅 My Attendance
+            </a>
+
+
+            <a
+                href="#marks"
+                class="menu"
+            >
+                📝 My Marks
+            </a>
+
+
+            <a
+                href="#result"
+                class="menu"
+            >
+                📄 My Result
+            </a>
+
+
+            <a
+                href="#fees"
+                class="menu"
+            >
+                💰 My Fees
+            </a>
+
+
+            <a
+                href="#timetable"
+                class="menu"
+            >
+                🗓️ Timetable
+            </a>
+
+
+            <a
+                href="#notices"
+                class="menu"
+            >
+                📢 Notices
+            </a>
+
+
+            <a
+                href="user-login.html"
+                class="menu"
+                id="studentLogoutLink"
+            >
+                🚪 Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="top-header">
+
+            <div>
+
+                <h1>
+                    Student Dashboard
+                </h1>
+
+                <p>
+                    Welcome to your student portal
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="profile-icon">
+                    S
+                </div>
+
+                <div>
+
+                    <strong id="studentNameHeader">
+                        Student
+                    </strong>
+
+                    <small>
+                        Student
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             WELCOME
+        ================================================== -->
+
+        <section class="content-box">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2 id="welcomeStudent">
+                        Welcome, Student
+                    </h2>
+
+                    <p>
+                        Here is an overview of your academic information.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SUMMARY CARDS
+        ================================================== -->
+
+        <section class="dashboard-cards">
+
+
+            <!-- STUDENT ID -->
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🎓
+                </div>
+
+                <div>
+
+                    <h3 id="studentIdDisplay">
+                        -
+                    </h3>
+
+                    <p>
+                        Student ID
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- COURSE -->
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📚
+                </div>
+
+                <div>
+
+                    <h3 id="courseDisplay">
+                        -
+                    </h3>
+
+                    <p>
+                        Course
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ATTENDANCE -->
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📅
+                </div>
+
+                <div>
+
+                    <h3 id="attendancePercentage">
+                        0%
+                    </h3>
+
+                    <p>
+                        Attendance
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PENDING FEES -->
+
+            <div class="card">
+
+                <div class="card-icon">
+                    💰
+                </div>
+
+                <div>
+
+                    <h3 id="pendingFees">
+                        ₹0
+                    </h3>
+
+                    <p>
+                        Pending Fees
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ACADEMIC SUMMARY
+        ================================================== -->
+
+        <section class="dashboard-cards">
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📖
+                </div>
+
+                <div>
+
+                    <h3 id="semesterDisplay">
+                        -
+                    </h3>
+
+                    <p>
+                        Semester / Year
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🏫
+                </div>
+
+                <div>
+
+                    <h3 id="collegeDisplay">
+                        -
+                    </h3>
+
+                    <p>
+                        College / Institute
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📝
+                </div>
+
+                <div>
+
+                    <h3 id="totalMarks">
+                        0
+                    </h3>
+
+                    <p>
+                        Marks Records
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🔔
+                </div>
+
+                <div>
+
+                    <h3 id="noticeCount">
+                        0
+                    </h3>
+
+                    <p>
+                        Notices
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PROFILE
+        ================================================== -->
+
+        <section
+            class="content-box"
+            id="profile"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        👤 My Profile
+                    </h2>
+
+                    <p>
+                        Your complete registered information
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <tbody>
+
+
+                        <tr>
+
+                            <th>
+                                Full Name
+                            </th>
+
+                            <td id="profileName">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Date of Birth
+                            </th>
+
+                            <td id="profileDob">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Gender
+                            </th>
+
+                            <td id="profileGender">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <td id="profileEmail">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Phone
+                            </th>
+
+                            <td id="profilePhone">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Address
+                            </th>
+
+                            <td id="profileAddress">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                City
+                            </th>
+
+                            <td id="profileCity">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                State
+                            </th>
+
+                            <td id="profileState">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                PIN Code
+                            </th>
+
+                            <td id="profilePincode">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Student ID
+                            </th>
+
+                            <td id="profileStudentId">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Roll Number
+                            </th>
+
+                            <td id="profileRollNumber">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Course
+                            </th>
+
+                            <td id="profileCourse">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Department
+                            </th>
+
+                            <td id="profileDepartment">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Semester / Year
+                            </th>
+
+                            <td id="profileSemester">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Academic Year
+                            </th>
+
+                            <td id="profileAcademicYear">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                College / Institute
+                            </th>
+
+                            <td id="profileCollege">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Parent / Guardian
+                            </th>
+
+                            <td id="profileGuardianName">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Relationship
+                            </th>
+
+                            <td id="profileGuardianRelation">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Guardian Phone
+                            </th>
+
+                            <td id="profileGuardianPhone">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Emergency Contact
+                            </th>
+
+                            <td id="profileEmergencyContact">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Username
+                            </th>
+
+                            <td id="profileUsername">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Account Status
+                            </th>
+
+                            <td id="profileStatus">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ATTENDANCE
+        ================================================== -->
+
+        <section
+            class="content-box"
+            id="attendance"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        📅 My Attendance
+                    </h2>
+
+                    <p>
+                        Attendance summary and daily records
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-cards">
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        ✅
+                    </div>
+
+                    <div>
+
+                        <h3 id="presentDays">
+                            0
+                        </h3>
+
+                        <p>
+                            Present Days
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        ❌
+                    </div>
+
+                    <div>
+
+                        <h3 id="absentDays">
+                            0
+                        </h3>
+
+                        <p>
+                            Absent Days
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        📊
+                    </div>
+
+                    <div>
+
+                        <h3 id="totalAttendanceDays">
+                            0
+                        </h3>
+
+                        <p>
+                            Total Classes
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        📈
+                    </div>
+
+                    <div>
+
+                        <h3 id="attendancePercentageDetail">
+                            0%
+                        </h3>
+
+                        <p>
+                            Attendance %
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="studentAttendanceTable">
+
+                        <tr>
+
+                            <td colspan="2">
+                                Loading attendance...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MARKS
+        ================================================== -->
+
+        <section
+            class="content-box"
+            id="marks"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        📝 My Marks
+                    </h2>
+
+                    <p>
+                        Subject-wise exam marks
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Exam
+                            </th>
+
+                            <th>
+                                Subject
+                            </th>
+
+                            <th>
+                                Marks
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="studentMarksTable">
+
+                        <tr>
+
+                            <td colspan="3">
+                                Loading marks...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RESULT
+        ================================================== -->
+
+        <section
+            class="content-box"
+            id="result"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        📄 My Result
+                    </h2>
+
+                    <p>
+                        Overall academic result
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-cards">
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        📝
+                    </div>
+
+                    <div>
+
+                        <h3 id="resultTotalSubjects">
+                            0
+                        </h3>
+
+                        <p>
+                            Subjects
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        🎯
+                    </div>
+
+                    <div>
+
+                        <h3 id="resultTotalMarks">
+                            0
+                        </h3>
+
+                        <p>
+                            Total Marks
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        📊
+                    </div>
+
+                    <div>
+
+                        <h3 id="resultAverage">
+                            0
+                        </h3>
+
+                        <p>
+                            Average Marks
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Exam
+                            </th>
+
+                            <th>
+                                Subject
+                            </th>
+
+                            <th>
+                                Marks
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="studentResultTable">
+
+                        <tr>
+
+                            <td colspan="3">
+                                Result data will appear here.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FEES
+        ================================================== -->
+
+        <section
+            class="content-box"
+            id="fees"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        💰 My Fees
+                    </h2>
+
+                    <p>
+                        Fee payment and pending balance
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-cards">
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        💳
+                    </div>
+
+                    <div>
+
+                        <h3 id="totalFee">
+                            ₹0
+                        </h3>
+
+                        <p>
+                            Total Fee
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        ✅
+                    </div>
+
+                    <div>
+
+                        <h3 id="paidFee">
+                            ₹0
+                        </h3>
+
+                        <p>
+                            Paid Fee
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon">
+                        ⏳
+                    </div>
+
+                    <div>
+
+                        <h3 id="pendingFeeDetail">
+                            ₹0
+                        </h3>
+
+                        <p>
+                            Pending Fee
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Fee Type
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+
+                            <th>
+                                Payment Date
+                            </th>
+
+                            <th>
+                                Payment Method
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="studentFeesTable">
+
+                        <tr>
+
+                            <td colspan="4">
+                                Loading fee records...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             TIMETABLE
+        ================================================== -->
+
+        <section
+            class="content-box"
+            id="timetable"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        🗓️ Class Timetable
+                    </h2>
+
+                    <p>
+                        Your class schedule
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Day
+                            </th>
+
+                            <th>
+                                Time
+                            </th>
+
+                            <th>
+                                Subject
+                            </th>
+
+                            <th>
+                                Room
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="studentTimetableTable">
+
+                        <tr>
+
+                            <td colspan="4">
+                                Timetable will appear here.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             NOTICES
+        ================================================== -->
+
+        <section
+            class="content-box"
+            id="notices"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        📢 Notices & Announcements
+                    </h2>
+
+                    <p>
+                        Important college announcements
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="studentNoticesList"
+            >
+
+                <div class="card">
+
+                    <div>
+
+                        <h3>
+                            No notices available
+                        </h3>
+
+                        <p>
+                            New college announcements will appear here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script src="student-dashboard.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Notices - Student Management System</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>SMS</h2>
+
+            <p>
+                Student Management
+            </p>
+
+        </div>
+
+
+        <nav>
+
+            <a
+                href="index.html"
+                class="menu"
+            >
+                🏠 Dashboard
+            </a>
+
+
+            <a
+                href="students.html"
+                class="menu"
+            >
+                👨‍🎓 Students
+            </a>
+
+
+            <a
+                href="attendance.html"
+                class="menu"
+            >
+                📅 Attendance
+            </a>
+
+
+            <a
+                href="exams.html"
+                class="menu"
+            >
+                📝 Exams & Marks
+            </a>
+
+
+            <a
+                href="result.html"
+                class="menu"
+            >
+                📄 Result
+            </a>
+
+
+            <a
+                href="fees.html"
+                class="menu"
+            >
+                💰 Fees
+            </a>
+
+
+            <a
+                href="reports.html"
+                class="menu"
+            >
+                📊 Reports
+            </a>
+
+
+            <a
+                href="users.html"
+                class="menu"
+            >
+                👥 Users
+            </a>
+
+
+            <a
+                href="timetable.html"
+                class="menu"
+            >
+                🗓️ Timetable
+            </a>
+
+
+            <a
+                href="notices.html"
+                class="menu active"
+            >
+                📢 Notices
+            </a>
+
+
+            <a
+                href="settings.html"
+                class="menu"
+            >
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="top-header">
+
+            <div>
+
+                <h1>
+                    Notices & Announcements
+                </h1>
+
+                <p>
+                    Publish important college announcements
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="profile-icon">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             ADD NOTICE
+        ================================================== -->
+
+        <section class="content-box">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        📢 Publish New Notice
+                    </h2>
+
+                    <p>
+                        Add an announcement for students.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="noticeForm">
+
+
+                <div class="form-group">
+
+                    <label for="noticeTitle">
+                        Notice Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="noticeTitle"
+                        placeholder="Enter notice title"
+                        maxlength="150"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="noticeCategory">
+                        Category
+                    </label>
+
+                    <select
+                        id="noticeCategory"
+                        required
+                    >
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="Academic">
+                            Academic
+                        </option>
+
+                        <option value="Exam">
+                            Exam
+                        </option>
+
+                        <option value="Fees">
+                            Fees
+                        </option>
+
+                        <option value="Event">
+                            Event
+                        </option>
+
+                        <option value="General">
+                            General
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="noticeAudience">
+                        Audience
+                    </label>
+
+                    <select
+                        id="noticeAudience"
+                        required
+                    >
+
+                        <option value="">
+                            Select Audience
+                        </option>
+
+                        <option value="All Students">
+                            All Students
+                        </option>
+
+                        <option value="BCA">
+                            BCA Students
+                        </option>
+
+                        <option value="BBA">
+                            BBA Students
+                        </option>
+
+                        <option value="BSc">
+                            B.Sc Students
+                        </option>
+
+                        <option value="MCA">
+                            MCA Students
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="noticeDate">
+                        Notice Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="noticeDate"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="noticeMessage">
+                        Notice Details
+                    </label>
+
+                    <textarea
+                        id="noticeMessage"
+                        rows="6"
+                        placeholder="Write the complete notice here..."
+                        maxlength="2000"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <button type="submit">
+                    Publish Notice
+                </button>
+
+
+            </form>
+
+
+            <p id="noticeMessageStatus"></p>
+
+        </section>
+
+
+        <!-- =================================================
+             NOTICE LIST
+        ================================================== -->
+
+        <section class="content-box">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Published Notices
+                    </h2>
+
+                    <p>
+                        Current announcements visible to students.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="noticeList"
+            >
+
+                <div class="card">
+
+                    <div>
+
+                        <h3>
+                            Loading notices...
+                        </h3>
+
+                        <p>
+                            Please wait.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script src="notices.js"></script>
+
+</body>
+
+</html>

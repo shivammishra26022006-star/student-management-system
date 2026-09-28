@@ -1,61 +1,609 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Users - Student Management System</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>Student Users - Student Management System</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
 <body>
 
-    <div class="container">
+    <aside class="sidebar">
 
-        <h1>Student Management System</h1>
+        <div class="logo">
 
-        <h2>Registered Users</h2>
+            <h2>SMS</h2>
 
-        <p>
-            Admin can view registered user information and login activity.
-        </p>
-
-        <div class="table-container">
-
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Username</th>
-                        <th>Registered Date</th>
-                        <th>Last Login</th>
-                    </tr>
-                </thead>
-
-                <tbody id="usersTableBody">
-                    <tr>
-                        <td colspan="7">
-                            Loading users...
-                        </td>
-                    </tr>
-                </tbody>
-
-            </table>
+            <p>
+                Student Management
+            </p>
 
         </div>
 
-        <p>
-            <a href="index.html">Back to Dashboard</a>
-        </p>
 
-    </div>
+        <nav>
+
+            <a
+                href="index.html"
+                class="menu"
+            >
+                🏠 Dashboard
+            </a>
+
+            <a
+                href="students.html"
+                class="menu"
+            >
+                👨‍🎓 Students
+            </a>
+
+            <a
+                href="attendance.html"
+                class="menu"
+            >
+                📅 Attendance
+            </a>
+
+            <a
+                href="exams.html"
+                class="menu"
+            >
+                📝 Exams & Marks
+            </a>
+
+            <a
+                href="result.html"
+                class="menu"
+            >
+                📄 Result
+            </a>
+
+            <a
+                href="fees.html"
+                class="menu"
+            >
+                💰 Fees
+            </a>
+
+            <a
+                href="reports.html"
+                class="menu"
+            >
+                📊 Reports
+            </a>
+
+            <a
+                href="users.html"
+                class="menu active"
+            >
+                👥 Users
+            </a>
+
+            <a
+                href="settings.html"
+                class="menu"
+            >
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="top-header">
+
+            <div>
+
+                <h1>
+                    Student Users
+                </h1>
+
+                <p>
+                    Manage registered student accounts
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="profile-icon">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             PAGE INTRO
+        ================================================== -->
+
+        <section class="content-box">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Registered Students
+                    </h2>
+
+                    <p>
+                        View student personal, academic and account information.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             USERS TABLE
+        ================================================== -->
+
+        <section class="content-box">
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                ID
+                            </th>
+
+                            <th>
+                                Student Name
+                            </th>
+
+                            <th>
+                                Student ID
+                            </th>
+
+                            <th>
+                                Roll Number
+                            </th>
+
+                            <th>
+                                Course
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Phone
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Last Login
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="usersTableBody">
+
+                        <tr>
+
+                            <td colspan="10">
+                                Loading students...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             STUDENT DETAILS
+        ================================================== -->
+
+        <section
+            class="content-box"
+            id="studentDetailsSection"
+            style="display: none;"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Student Details
+                    </h2>
+
+                    <p>
+                        Complete registered information
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <tbody>
+
+                        <tr>
+
+                            <th>
+                                Full Name
+                            </th>
+
+                            <td id="detailName">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Date of Birth
+                            </th>
+
+                            <td id="detailDob">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Gender
+                            </th>
+
+                            <td id="detailGender">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <td id="detailEmail">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Phone
+                            </th>
+
+                            <td id="detailPhone">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Address
+                            </th>
+
+                            <td id="detailAddress">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                City
+                            </th>
+
+                            <td id="detailCity">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                State
+                            </th>
+
+                            <td id="detailState">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                PIN Code
+                            </th>
+
+                            <td id="detailPincode">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Student ID
+                            </th>
+
+                            <td id="detailStudentId">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Roll Number
+                            </th>
+
+                            <td id="detailRollNumber">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Course
+                            </th>
+
+                            <td id="detailCourse">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Department
+                            </th>
+
+                            <td id="detailDepartment">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Semester / Year
+                            </th>
+
+                            <td id="detailSemester">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Academic Year
+                            </th>
+
+                            <td id="detailAcademicYear">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                College / Institute
+                            </th>
+
+                            <td id="detailCollege">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Parent / Guardian
+                            </th>
+
+                            <td id="detailGuardianName">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Relationship
+                            </th>
+
+                            <td id="detailGuardianRelation">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Guardian Phone
+                            </th>
+
+                            <td id="detailGuardianPhone">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Emergency Contact
+                            </th>
+
+                            <td id="detailEmergencyContact">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Username
+                            </th>
+
+                            <td id="detailUsername">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Account Status
+                            </th>
+
+                            <td id="detailStatus">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Registered On
+                            </th>
+
+                            <td id="detailCreatedAt">
+                                -
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <th>
+                                Last Login
+                            </th>
+
+                            <td id="detailLastLogin">
+                                -
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
 
     <script src="users.js"></script>
 
 </body>
+
 </html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Timetable - Student Management System</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>SMS</h2>
+
+            <p>
+                Student Management
+            </p>
+
+        </div>
+
+
+        <nav>
+
+            <a
+                href="index.html"
+                class="menu"
+            >
+                🏠 Dashboard
+            </a>
+
+
+            <a
+                href="students.html"
+                class="menu"
+            >
+                👨‍🎓 Students
+            </a>
+
+
+            <a
+                href="attendance.html"
+                class="menu"
+            >
+                📅 Attendance
+            </a>
+
+
+            <a
+                href="exams.html"
+                class="menu"
+            >
+                📝 Exams & Marks
+            </a>
+
+
+            <a
+                href="result.html"
+                class="menu"
+            >
+                📄 Result
+            </a>
+
+
+            <a
+                href="fees.html"
+                class="menu"
+            >
+                💰 Fees
+            </a>
+
+
+            <a
+                href="reports.html"
+                class="menu"
+            >
+                📊 Reports
+            </a>
+
+
+            <a
+                href="users.html"
+                class="menu"
+            >
+                👥 Users
+            </a>
+
+
+            <a
+                href="timetable.html"
+                class="menu active"
+            >
+                🗓️ Timetable
+            </a>
+
+
+            <a
+                href="settings.html"
+                class="menu"
+            >
+                ⚙️ Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+            <div>
+
+                <h1>
+                    Class Timetable
+                </h1>
+
+                <p>
+                    Manage and view class schedules
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="profile-icon">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             ADD TIMETABLE
+        ================================================== -->
+
+        <section class="content-box">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Add Timetable
+                    </h2>
+
+                    <p>
+                        Create a class schedule for students.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="timetableForm">
+
+
+                <div class="form-group">
+
+                    <label for="timetableCourse">
+                        Course
+                    </label>
+
+                    <input
+                        type="text"
+                        id="timetableCourse"
+                        placeholder="Example: BCA"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="timetableSemester">
+                        Semester / Year
+                    </label>
+
+                    <input
+                        type="text"
+                        id="timetableSemester"
+                        placeholder="Example: 1st Semester"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="timetableDay">
+                        Day
+                    </label>
+
+                    <select
+                        id="timetableDay"
+                        required
+                    >
+
+                        <option value="">
+                            Select Day
+                        </option>
+
+                        <option value="Monday">
+                            Monday
+                        </option>
+
+                        <option value="Tuesday">
+                            Tuesday
+                        </option>
+
+                        <option value="Wednesday">
+                            Wednesday
+                        </option>
+
+                        <option value="Thursday">
+                            Thursday
+                        </option>
+
+                        <option value="Friday">
+                            Friday
+                        </option>
+
+                        <option value="Saturday">
+                            Saturday
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="timetableTime">
+                        Time
+                    </label>
+
+                    <input
+                        type="text"
+                        id="timetableTime"
+                        placeholder="Example: 10:00 AM - 11:00 AM"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="timetableSubject">
+                        Subject
+                    </label>
+
+                    <input
+                        type="text"
+                        id="timetableSubject"
+                        placeholder="Enter subject"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="timetableTeacher">
+                        Teacher
+                    </label>
+
+                    <input
+                        type="text"
+                        id="timetableTeacher"
+                        placeholder="Enter teacher name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="timetableRoom">
+                        Room
+                    </label>
+
+                    <input
+                        type="text"
+                        id="timetableRoom"
+                        placeholder="Example: Room 204"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit">
+                    Add Timetable
+                </button>
+
+
+            </form>
+
+
+            <p id="timetableMessage"></p>
+
+        </section>
+
+
+        <!-- =================================================
+             TIMETABLE LIST
+        ================================================== -->
+
+        <section class="content-box">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Timetable Records
+                    </h2>
+
+                    <p>
+                        Current class schedule
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Course
+                            </th>
+
+                            <th>
+                                Semester
+                            </th>
+
+                            <th>
+                                Day
+                            </th>
+
+                            <th>
+                                Time
+                            </th>
+
+                            <th>
+                                Subject
+                            </th>
+
+                            <th>
+                                Teacher
+                            </th>
+
+                            <th>
+                                Room
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="timetableTableBody">
+
+                        <tr>
+
+                            <td colspan="7">
+                                Loading timetable...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script src="timetable.js"></script>
+
+</body>
+
+</html>

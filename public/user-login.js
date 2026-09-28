@@ -1,169 +1,139 @@
-const loginForm =
-    document.getElementById("userLoginForm");
+/* =========================================================
+   STUDENT LOGIN
+========================================================= */
 
-const registerForm =
-    document.getElementById("userRegisterForm");
+const loginForm =
+    document.getElementById(
+        "userLoginForm"
+    );
 
 const loginMessage =
-    document.getElementById("userLoginMessage");
-
-const registerMessage =
-    document.getElementById("userRegisterMessage");
-
-
-/* =========================
-   USER LOGIN
-========================= */
-
-loginForm.addEventListener("submit", async function (event) {
-    event.preventDefault();
-
-    const username =
-        document.getElementById("loginUsername")
-            .value
-            .trim();
-
-    const password =
-        document.getElementById("loginPassword")
-            .value;
-
-    loginMessage.textContent = "Logging in...";
-
-    try {
-        const response = await fetch("/api/users/login", {
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-                username,
-                password
-            })
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(
-                data.error || "Login failed"
-            );
-        }
-
-        localStorage.setItem(
-            "userLoggedIn",
-            "true"
-        );
-
-        localStorage.setItem(
-            "userId",
-            data.user.id
-        );
-
-        localStorage.setItem(
-            "userName",
-            data.user.name
-        );
-
-        loginMessage.textContent =
-            "Login successful.";
-
-        /*
-         * Abhi user dashboard nahi banaya hai.
-         * Isliye filhaal login successful message hi dikhega.
-         */
-
-    } catch (error) {
-        console.error(error);
-
-        loginMessage.textContent =
-            error.message;
-    }
-});
+    document.getElementById(
+        "userLoginMessage"
+    );
 
 
-/* =========================
-   USER REGISTRATION
-========================= */
+/* =========================================================
+   LOGIN
+========================================================= */
 
-registerForm.addEventListener(
-    "submit",
-    async function (event) {
+if (loginForm) {
 
-        event.preventDefault();
+    loginForm.addEventListener(
+        "submit",
+        async function (event) {
 
-        const name =
-            document.getElementById("registerName")
-                .value
-                .trim();
+            event.preventDefault();
 
-        const email =
-            document.getElementById("registerEmail")
-                .value
-                .trim();
 
-        const phone =
-            document.getElementById("registerPhone")
-                .value
-                .trim();
+            const username =
+                document.getElementById(
+                    "loginUsername"
+                ).value.trim();
 
-        const username =
-            document.getElementById("registerUsername")
-                .value
-                .trim();
 
-        const password =
-            document.getElementById("registerPassword")
-                .value;
+            const password =
+                document.getElementById(
+                    "loginPassword"
+                ).value;
 
-        registerMessage.textContent =
-            "Creating account...";
 
-        try {
+            loginMessage.textContent =
+                "Logging in...";
 
-            const response =
-                await fetch(
-                    "/api/users/register",
-                    {
-                        method: "POST",
 
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
+            try {
 
-                        body: JSON.stringify({
-                            name,
-                            email,
-                            phone,
-                            username,
-                            password
-                        })
-                    }
+                const response =
+                    await fetch(
+                        "/api/users/login",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                username,
+                                password
+                            })
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.error ||
+                        "Login failed"
+                    );
+
+                }
+
+
+                /* =========================
+                   SAVE LOGIN SESSION
+                ========================= */
+
+                localStorage.setItem(
+                    "userLoggedIn",
+                    "true"
                 );
 
-            const data =
-                await response.json();
 
-            if (!response.ok) {
-                throw new Error(
-                    data.error ||
-                    "Registration failed"
+                localStorage.setItem(
+                    "userId",
+                    String(
+                        data.user.id
+                    )
                 );
+
+
+                localStorage.setItem(
+                    "userName",
+                    data.user.name
+                );
+
+
+                /* =========================
+                   SUCCESS
+                ========================= */
+
+                loginMessage.textContent =
+                    "Login successful. Opening dashboard...";
+
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "student-dashboard.html";
+
+                    },
+                    500
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Student login error:",
+                    error
+                );
+
+
+                loginMessage.textContent =
+                    error.message;
+
             }
 
-            registerMessage.textContent =
-                "Account created successfully.";
-
-            registerForm.reset();
-
-        } catch (error) {
-
-            console.error(error);
-
-            registerMessage.textContent =
-                error.message;
         }
-    }
-);
+    );
+
+}

@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>User Login - Student Management System</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>Student Login - Student Management System</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
 <body>
@@ -15,15 +25,29 @@
 
         <div class="login-card">
 
-            <h1>Student Management System</h1>
+            <h1>
+                Student Management System
+            </h1>
 
-            <h2>User Login</h2>
+            <p>
+                Student Portal
+            </p>
 
-            <!-- USER LOGIN -->
+
+            <!-- =====================================
+                 STUDENT LOGIN
+            ====================================== -->
+
+            <h2>
+                Student Login
+            </h2>
+
 
             <form id="userLoginForm">
 
+
                 <div class="form-group">
+
                     <label for="loginUsername">
                         Username
                     </label>
@@ -31,12 +55,16 @@
                     <input
                         type="text"
                         id="loginUsername"
-                        placeholder="Enter username"
+                        placeholder="Enter your username"
+                        autocomplete="username"
                         required
                     >
+
                 </div>
 
+
                 <div class="form-group">
+
                     <label for="loginPassword">
                         Password
                     </label>
@@ -44,105 +72,59 @@
                     <input
                         type="password"
                         id="loginPassword"
-                        placeholder="Enter password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
                         required
                     >
+
                 </div>
+
 
                 <button type="submit">
                     Login
                 </button>
 
+
             </form>
 
-            <p id="userLoginMessage"></p>
+
+            <p
+                id="userLoginMessage"
+            ></p>
+
 
             <hr>
 
-            <!-- USER REGISTRATION -->
 
-            <h2>Create User Account</h2>
+            <!-- =====================================
+                 CREATE ACCOUNT
+            ====================================== -->
 
-            <form id="userRegisterForm">
+            <p>
+                Don't have a student account?
+            </p>
 
-                <div class="form-group">
-                    <label for="registerName">
-                        Full Name
-                    </label>
 
-                    <input
-                        type="text"
-                        id="registerName"
-                        placeholder="Enter full name"
-                        required
-                    >
-                </div>
+            <a
+                href="student-register.html"
+                class="primary-button"
+            >
+                Create Student Account
+            </a>
 
-                <div class="form-group">
-                    <label for="registerEmail">
-                        Email
-                    </label>
 
-                    <input
-                        type="email"
-                        id="registerEmail"
-                        placeholder="Enter email"
-                        required
-                    >
-                </div>
+            <p>
+                Student Registration is on a separate page.
+            </p>
 
-                <div class="form-group">
-                    <label for="registerPhone">
-                        Phone
-                    </label>
-
-                    <input
-                        type="tel"
-                        id="registerPhone"
-                        placeholder="Enter phone number"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label for="registerUsername">
-                        Username
-                    </label>
-
-                    <input
-                        type="text"
-                        id="registerUsername"
-                        placeholder="Create username"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label for="registerPassword">
-                        Password
-                    </label>
-
-                    <input
-                        type="password"
-                        id="registerPassword"
-                        placeholder="Create password"
-                        required
-                    >
-                </div>
-
-                <button type="submit">
-                    Create Account
-                </button>
-
-            </form>
-
-            <p id="userRegisterMessage"></p>
 
         </div>
 
     </div>
 
+
     <script src="user-login.js"></script>
 
 </body>
+
 </html>
